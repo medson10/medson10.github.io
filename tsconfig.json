@@ -1,17 +1,18 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
     "module": "commonjs",
-    "lib": [ "dom", "es2015", "es2017" ],
-    "jsx": "react",
-    "sourceMap": true,
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "es2015", "es2017"],
     "strict": true,
-    "noImplicitAny": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSynthticDefaultImports": true
+    "removeComments": false,
+    "preserveConstEnums": true
   },
-  "include": "./src/**/*"
+  "include": ["./src/**/*"]
 }
