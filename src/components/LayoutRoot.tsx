@@ -6,6 +6,7 @@ import normalize from '../styles/normalize'
 const StyledLayoutRoot = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: #000;
   min-height: 100vh;
 `
 

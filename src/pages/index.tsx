@@ -1,18 +1,21 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
+import styled from '@emotion/styled'
 
-import Page from '../components/Page'
-import Container from '../components/Container'
-import IndexLayout from '../layouts'
+import { Page } from '../components/Page'
+import { Container } from '../components/Container'
+import { IndexLayout } from '../layouts'
+
+const Title = styled.h1`
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+`
 
 const IndexPage = () => (
   <IndexLayout>
     <Page>
       <Container>
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <Link to="/page-2/">Go to page 2</Link>
+        <Title>My name is Medson Oliveira and I'm Fullstack Developer</Title>
       </Container>
     </Page>
   </IndexLayout>

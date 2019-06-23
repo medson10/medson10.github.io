@@ -18,7 +18,7 @@ interface StaticQueryProps {
   }
 }
 
-const IndexLayout: React.SFC = ({ children }) => (
+export const IndexLayout: React.SFC = ({ children }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -32,18 +32,8 @@ const IndexLayout: React.SFC = ({ children }) => (
     `}
     render={(data: StaticQueryProps) => (
       <LayoutRoot>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: 'gatsbyjs, gatsby, javascript, sample, something' }
-          ]}
-        />
-        <Header title={data.site.siteMetadata.title} />
         <LayoutMain>{children}</LayoutMain>
       </LayoutRoot>
     )}
   />
 )
-
-export default IndexLayout

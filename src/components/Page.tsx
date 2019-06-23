@@ -8,13 +8,13 @@ const StyledPage = styled.div`
   flex: 1;
   position: relative;
   padding: ${dimensions.containerPadding}rem;
-  margin-bottom: 3rem;
+  background: #000;
 `
 
 interface PageProps {
   className?: string
 }
 
-const Page: React.SFC<PageProps> = ({ children, className }) => <StyledPage className={className}>{children}</StyledPage>
+export const Page: React.SFC<PageProps> = ({ children, className }) => <StyledPage className={className}>{children}</StyledPage>
 
 export default Page
