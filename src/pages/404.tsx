@@ -1,21 +1,24 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
+import * as React from 'react';
+import { Content, Header, Layout, Wrapper, SectionTitle } from '../components';
+import Helmet from 'react-helmet';
+import config from '../../config/SiteConfig';
+import { Link } from 'gatsby';
 
-import Page from '../components/Page'
-import Container from '../components/Container'
-import IndexLayout from '../layouts'
-
-const NotFoundPage = () => (
-  <IndexLayout>
-    <Page>
-      <Container>
-        <h1>404: Page not found.</h1>
-        <p>
-          You've hit the void. <Link to="/">Go back.</Link>
-        </p>
-      </Container>
-    </Page>
-  </IndexLayout>
-)
-
-export default NotFoundPage
+export default class NotFoundPage extends React.Component<any> {
+  public render() {
+    return (
+      <Layout>
+        <Helmet title={`404 not found | ${config.siteTitle}`} />
+        <Header>
+          <Link to="/">{config.siteTitle}</Link>
+          <SectionTitle>NOT FOUND</SectionTitle>
+        </Header>
+        <Wrapper>
+          <Content>
+            <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+          </Content>
+        </Wrapper>
+      </Layout>
+    );
+  }
+}

@@ -1,46 +1,63 @@
-import * as React from 'react'
-import styled from '@emotion/styled'
-import { transparentize } from 'polished'
-import { Link } from 'gatsby'
+import React from 'react';
+import styled from 'styled-components';
+import { darken, lighten } from 'polished';
+import rgba from 'polished/lib/color/rgba';
+import { media } from '../utils/media';
+import config from '../../config/SiteConfig';
 
-import { heights, dimensions, colors } from '../styles/variables'
-import Container from './Container'
-
-const StyledHeader = styled.header`
-  height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.brand};
-  color: ${transparentize(0.5, colors.white)};
-`
-
-const HeaderInner = styled(Container)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-`
-
-const HomepageLink = styled(Link)`
-  color: ${colors.white};
-  font-size: 1.5rem;
-  font-weight: 600;
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
+const HeaderWrapper: any = styled.header`
+  position: relative;
+  background: linear-gradient(
+      -185deg,
+      ${props => rgba(darken(0.1, props.theme.colors.primary), 0.6)},
+      ${props => rgba(lighten(0.1, props.theme.colors.grey.dark), 0.8)}
+    ),
+    url(${(props: any) => props.banner}) no-repeat;
+  background-size: cover;
+  padding: 8rem 2rem 10rem;
+  text-align: center;
+  ::after {
+    background: transparent url(/assets/mask.svg) no-repeat bottom left;
+    background-size: 101%;
+    bottom: -2px;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
   }
-`
+  @media ${media.tablet} {
+    padding: 4rem 2rem 6rem;
+  }
+  @media ${media.phone} {
+    padding: 1rem 0.5rem 2rem;
+  }
+`;
 
-interface HeaderProps {
-  title: string
+const Content = styled.div`
+  position: relative;
+  z-index: 999;
+  a {
+    color: white;
+    &:hover {
+      opacity: 0.85;
+      color: white;
+    }
+  }
+`;
+
+interface Props {
+  children: any;
+  banner?: string;
 }
 
-const Header: React.SFC<HeaderProps> = ({ title }) => (
-  <StyledHeader>
-    <HeaderInner>
-      <HomepageLink to="/">{title}</HomepageLink>
-    </HeaderInner>
-  </StyledHeader>
-)
-
-export default Header
+export class Header extends React.PureComponent<Props> {
+  public render() {
+    return (
+      <HeaderWrapper banner={this.props.banner || config.defaultBg}>
+        <Content>{this.props.children}</Content>
+      </HeaderWrapper>
+    );
+  }
+}
